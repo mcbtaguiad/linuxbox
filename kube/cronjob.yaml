@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: restart-deployment
+  namespace: linuxbox
+spec:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  concurrencyPolicy: Forbid
+  schedule: '*/10 * * * *'
+  jobTemplate:
+    spec:
+      backoffLimit: 2 
+      activeDeadlineSeconds: 600 
+      template:
+        spec:
+          serviceAccountName: restart-deployment
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command:
+                - bash
+                - -c
+                - >-
+                  kubectl rollout restart deployment/linuxbox-centos9 -n linuxbox &&
+                  kubectl rollout status deployment/linuxbox-centos9 -n linuxbox
