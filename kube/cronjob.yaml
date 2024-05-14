@@ -20,8 +20,9 @@ spec:
             - name: kubectl
               image: bitnami/kubectl
               command:
-                - bash
-                - -c
-                - >-
-                  kubectl rollout restart deployment/linuxbox-centos9 -n linuxbox &&
-                  kubectl rollout status deployment/linuxbox-centos9 -n linuxbox
+                - 'kubectl'
+                - 'rollout'
+                - 'restart'
+                - 'deployment/linuxbox-centos9'
+                - '-n'
+                - 'linuxbox'
