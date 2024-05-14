@@ -1,7 +1,7 @@
 services:
     app:
         container_name: linuxbox
-        image: ghcr.io/mcbtaguiad/linuxbox-centos9:main
+        image: ghcr.io/mcbtaguiad/linuxbox:main
         build:
             context: .
             dockerfile: Dockerfile

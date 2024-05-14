@@ -52,6 +52,8 @@ spec:
                 operator: In
                 values:
                 - 'ssd'
+      imagePullSecrets:
+      - name: ghcr.io
       containers:
       - name: linuxbox-centos9
         image: ghcr.io/mcbtaguiad/linuxbox:main
