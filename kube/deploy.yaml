@@ -54,7 +54,7 @@ spec:
                 - 'ssd'
       containers:
       - name: linuxbox-centos9
-        image: ghcr.io/mcbtaguiad/linuxbox-centos9:main
+        image: ghcr.io/mcbtaguiad/linuxbox:main
         imagePullPolicy: Always
         ports:
         - containerPort: 22
