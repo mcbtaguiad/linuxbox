@@ -1,0 +1,11 @@
+services:
+    app:
+        container_name: linuxbox
+        image: ghcr.io/mcbtaguiad/linuxbox:main
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # entrypoint: tail -f /dev/null
+        restart: always
+        ports:
+            - "2222:22"

@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: linuxbox-centos9
+  name: linuxbox-centos9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linuxbox-centos9
+  template:
+    metadata:
+      labels:
+        app: linuxbox-centos9
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - 'amd64'
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 15
+            preference:
+              matchExpressions:
+              - key: core
+                operator: In
+                values:
+                - '4'
+          - weight: 10
+            preference:
+              matchExpressions:
+              - key: core
+                operator: In
+                values:
+                - '3'
+          # - weight: 10
+          #   preference:
+          #     matchExpressions:
+          #     - key: kubernetes.io/role
+          #       operator: In
+          #       values:
+          #       - 'worker'
+          - weight: 5
+            preference:
+              matchExpressions:
+              - key: disk
+                operator: In
+                values:
+                - 'ssd'
+      containers:
+      - name: linuxbox-centos9
+        image: ghcr.io/mcbtaguiad/linuxbox-centos9:main
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 22
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: 1000m
+          requests:
+            memory: 250Mi
+            cpu: 250m
+      restartPolicy: Always
+
+
