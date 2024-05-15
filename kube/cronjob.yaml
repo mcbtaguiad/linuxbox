@@ -14,7 +14,7 @@ spec:
       activeDeadlineSeconds: 600 
       template:
         spec:
-          serviceAccountName: linuxbox
+          serviceAccountName: restart-deploy
           restartPolicy: Never
           containers:
             - name: kubectl
