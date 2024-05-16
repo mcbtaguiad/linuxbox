@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: linuxbox-ingress
+  annotations:
+
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - linuxbox.tagsdev.xyz
+    secretName: linuxbox-tls
+  rules:
+  - host: linuxbox.tagsdev.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: linuxbox-centos9
+            port:
+              number: 8080
