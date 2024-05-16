@@ -67,6 +67,10 @@ spec:
           requests:
             memory: 250Mi
             cpu: 250m
+          requests:
+            ephemeral-storage: "5Gi"
+          limits:
+            ephemeral-storage: "15Gi"
       restartPolicy: Always
 
 
