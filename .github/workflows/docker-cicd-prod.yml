@@ -37,6 +37,11 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
+      
+      - name: Base ref
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then BASEREF="${{ github.event.base_ref }}"; BASEREF="${BASEREF#refs/heads/}"; elif [ "${{ github.ref_type }}" = "branch" ]; then BASEREF="${{ github.ref_name }}"; else BASEREF=""; fi
+          echo "BASEREF=${BASEREF}" >> $GITHUB_ENV
 
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
