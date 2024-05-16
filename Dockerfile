@@ -10,7 +10,7 @@ RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.n
 # add packages
 RUN dnf update -y ; \
     dnf upgrade -y ; \
-    dnf install -y openssh-clients openssh-server
+    dnf install -y openssh-clients openssh-server vim nano
 
 # generate key
 RUN ssh-keygen -A
@@ -19,7 +19,7 @@ RUN ssh-keygen -A
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
 # change root password
-RUN echo 'root:root123' | chpasswd
+RUN echo 'root:doremie' | chpasswd
 
 ENTRYPOINT ["/usr/sbin/sshd", "-D", "-e"]
 
