@@ -4,7 +4,6 @@ metadata:
   name: restart-deployment
   namespace: linuxbox
 rules:
-  - apiGroups: ["apps", "extensions"]
+  - apiGroups: [""]
     resources: ["deployments"]
-    resourceNames: ["linuxbox"]
     verbs: ["get", "patch", "list", "watch"]
