@@ -1,7 +1,7 @@
 FROM redhat/ubi9:latest
 
 LABEL Maintainer="Mark Taguiad <marktaguiad@tagsdev.xyz>"
-LABEL Description="CentOS 9 SSH Image"
+LABEL Description="CentOS 9 Image"
 LABEL CentOS="9"
 
 # add epel
